@@ -1,0 +1,1152 @@
+\chapter{Неокейнсиански модел на малка отворена икономика}
+\label{ch:model}
+
+Настоящата глава извежда модела, който служи за структурна основа на изследването. Използва се вариантът на неокейнсианския модел за малка отворена икономика, представен в \textcite[гл.~7]{Gali2008} и разработен първоначално в \textcite{Gali_Monacelli2005}.
+
+\section{Общи положения}
+
+Световната икономика се моделира като континуум от малки отворени икономики, индексирани с $i \in [0,1]$. Всяка отделна икономика е с мярка нула, поради което поведението ѝ не влияе върху останалия свят. Икономиките се различават по реализациите на технологичните си шокове, но имат идентични предпочитания, технология и пазарна структура \parencite[с.~151]{Gali2008}.
+
+За облекчаване на записа променливите без индекс се отнасят за разглежданата малка отворена икономика, променливите с индекс $i$ - за произволна друга икономика от континуума, а променливите със звездичка ($*$) - за световната икономика като цяло. Малките букви означават естествен логаритъм от съответните величини, т.е. $c_t := \ln C_t$, $p_t := \ln P_t$ и т.н.
+
+\section{Домакинства}
+
+\subsection{Предпочитания и агрегати на потреблението}
+
+Представително домакинство в разглежданата икономика максимизира
+\begin{equation}
+\mathbb{E}_0 \sum_{t=0}^{\infty} \beta^t\, U(C_t, N_t),
+\label{eq:hh_objective}
+\end{equation}
+където $N_t$ е количеството труд, а $C_t$ е съставен индекс (агрегатор) на потреблението с постоянна еластичност на заместване
+\begin{equation}
+C_t := \left[ (1-\alpha)^{\frac{1}{\eta}} \, C_{H,t}^{\frac{\eta-1}{\eta}}
++ \alpha^{\frac{1}{\eta}} \, C_{F,t}^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},
+\qquad \alpha \in [0,1],\ \eta > 0.
+\label{eq:C_index}
+\end{equation}
+
+Индексът на потребление на домашни стоки е
+\begin{equation}
+C_{H,t} := \left( \int_0^1 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}\, dj \right)^{\frac{\varepsilon}{\varepsilon-1}},
+\qquad \varepsilon > 1,\ j \in [0,1],
+\label{eq:CH_index}
+\end{equation}
+където $j$ индексира разновидностите, произвеждани в страната. Индексът на вносните стоки е
+\begin{equation}
+C_{F,t} := \left( \int_0^1 C_{i,t}^{\frac{\gamma-1}{\gamma}}\, di \right)^{\frac{\gamma}{\gamma-1}},
+\qquad \gamma > 1,
+\label{eq:CF_index}
+\end{equation}
+където $C_{i,t}$ е индекс на количеството стоки, внесени от страна $i$, зададен аналогично на \eqref{eq:CH_index}:
+\begin{equation}
+C_{i,t} := \left( \int_0^1 C_{i,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}\, dj \right)^{\frac{\varepsilon}{\varepsilon-1}}.
+\label{eq:Ci_index}
+\end{equation}
+
+Параметрите имат следната интерпретация \parencite[с.~152]{Gali2008}:
+$\varepsilon$ е еластичността на заместване между разновидности, произведени в една и съща страна;
+$\alpha$ измерва степента на отвореност на икономиката (съответно $1-\alpha$ е мярка за предпочитание към домашни стоки);
+$\eta$ измерва заместимостта между домашни и чуждестранни стоки от гледна точка на домашния потребител;
+$\gamma$ измерва заместимостта между стоки, произведени в различни чуждестранни страни.
+
+Бюджетното ограничение има вида
+\begin{equation}
+\int_0^1 P_{H,t}(j) C_{H,t}(j)\, dj
++ \int_0^1 \!\! \int_0^1 P_{i,t}(j) C_{i,t}(j)\, dj\, di
++ \mathbb{E}_t\{ Q_{t,t+1} D_{t+1} \}
+\le D_t + W_t N_t + T_t,
+\label{eq:budget_full}
+\end{equation}
+където $P_{H,t}(j)$ е цената на домашната разновидност $j$, $P_{i,t}(j)$ е цената (в домашна валута) на разновидност $j$, внесена от страна $i$, $D_{t+1}$ е номиналното изплащане в период $t+1$ на портфейла, държан в края на период $t$, $W_t$ е номиналната работна заплата, $T_t$ са еднократни трансфери/данъци, а $Q_{t,t+1}$ е стохастичният дисконтов фактор за изплащания един период напред.
+
+Приема се, че домакинствата имат достъп до пълен набор от условни вземания (contingent claims), търгувани на международно ниво. Освен това последователността от бюджетни ограничения се допълва с условие за платежоспособност от вида
+\begin{equation}
+\lim_{T \to \infty} \mathbb{E}_t\{ D_T \} \ge 0
+\qquad \text{за всяко } t,
+\label{eq:solvency}
+\end{equation}
+чиято интерпретация е, че се забраняват схеми на Понци и се осигурява изпълнението на условие за трансверсалност.
+
+\subsection{Оптимално разпределение на разходите}
+
+Задачата на домакинството се разлага на статична част (как да се разпредели даден размер разходи между стоките) и динамична част (колко да се потребява общо и колко да се работи). Статичната част се решава на три нива, като на всяко ниво задачата е от един и същ тип: минимизиране на разходите при фиксирана стойност на съответния агрегат. Показваме подробно първото ниво, след което същата процедура се повтаря.
+
+\subsubsection*{Ниво 1: между разновидностите, произведени в една страна}
+
+Домакинството решава
+\begin{equation}
+\min_{\{C_{H,t}(j)\}} \int_0^1 P_{H,t}(j) C_{H,t}(j)\, dj
+\quad \text{при} \quad
+\left( \int_0^1 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}\, dj \right)^{\frac{\varepsilon}{\varepsilon-1}} = C_{H,t}.
+\label{eq:level1_problem}
+\end{equation}
+Полагаме $a := \frac{\varepsilon-1}{\varepsilon} \in (0,1)$, така че $\frac{1}{a} = \frac{\varepsilon}{\varepsilon-1}$ и ограничението се записва като $\left( \int_0^1 C_{H,t}(k)^a\, dk \right)^{1/a} = C_{H,t}$. Лагранжианът е
+\begin{equation}
+\mathcal{L} = \int_0^1 P_{H,t}(j) C_{H,t}(j)\, dj
++ \Lambda^{H}_t \left[ C_{H,t} - \left( \int_0^1 C_{H,t}(k)^{a}\, dk \right)^{\frac{1}{a}} \right].
+\label{eq:level1_lagrangian}
+\end{equation}
+
+Производната на първия член по $C_{H,t}(j)$ е $P_{H,t}(j)$, а производната на $\Lambda^{H}_t C_{H,t}$ е нула, тъй като $C_{H,t}$ е зададено. За производната на агрегата имаме
+\begin{equation}
+\frac{\partial}{\partial C_{H,t}(j)} \left( \int_0^1 C_{H,t}(k)^{a}\, dk \right)^{\frac{1}{a}}
+= \frac{1}{a} \left( \int_0^1 C_{H,t}(k)^{a}\, dk \right)^{\frac{1}{a}-1} \cdot a\, C_{H,t}(j)^{a-1}.
+\label{eq:level1_deriv}
+\end{equation}
+Означавайки $X_t := \int_0^1 C_{H,t}(k)^{a}\, dk$, от ограничението следва $X_t^{1/a} = C_{H,t}$, т.е. $X_t = C_{H,t}^{a}$. Тогава
+\[
+X_t^{\frac{1}{a}-1} = \left( C_{H,t}^{a} \right)^{\frac{1}{a}-1} = C_{H,t}^{\,1-a} = C_{H,t}^{\,1/\varepsilon},
+\qquad
+a - 1 = -\frac{1}{\varepsilon},
+\]
+поради което \eqref{eq:level1_deriv} се свежда до $C_{H,t}^{1/\varepsilon} C_{H,t}(j)^{-1/\varepsilon}$. Необходимото условие за оптималност е
+\begin{equation}
+\frac{\partial \mathcal{L}}{\partial C_{H,t}(j)}
+= P_{H,t}(j) - \Lambda^{H}_t\, C_{H,t}^{\frac{1}{\varepsilon}}\, C_{H,t}(j)^{-\frac{1}{\varepsilon}} = 0,
+\label{eq:level1_foc}
+\end{equation}
+откъдето
+\begin{equation}
+C_{H,t}(j) = \left( \frac{P_{H,t}(j)}{\Lambda^{H}_t} \right)^{-\varepsilon} C_{H,t}.
+\label{eq:level1_demand_lambda}
+\end{equation}
+
+За да се определи множителят $\Lambda^{H}_t$, умножаваме \eqref{eq:level1_demand_lambda} по $P_{H,t}(j)$ и интегрираме:
+\begin{equation}
+\int_0^1 P_{H,t}(j) C_{H,t}(j)\, dj
+= \left( \Lambda^{H}_t \right)^{\varepsilon} C_{H,t} \int_0^1 P_{H,t}(j)^{1-\varepsilon}\, dj.
+\label{eq:level1_expenditure}
+\end{equation}
+Дефинираме ценовите индекси
+\begin{equation}
+P_{H,t} := \left( \int_0^1 P_{H,t}(j)^{1-\varepsilon}\, dj \right)^{\frac{1}{1-\varepsilon}},
+\qquad
+P_{i,t} := \left( \int_0^1 P_{i,t}(j)^{1-\varepsilon}\, dj \right)^{\frac{1}{1-\varepsilon}},
+\label{eq:PH_index}
+\end{equation}
+така че $\int_0^1 P_{H,t}(j)^{1-\varepsilon}\, dj = P_{H,t}^{1-\varepsilon}$. Заместването на \eqref{eq:level1_demand_lambda} в ограничението дава
+\[
+\left( \int_0^1 \left[ \left( \tfrac{P_{H,t}(k)}{\Lambda^{H}_t} \right)^{-\varepsilon} C_{H,t} \right]^{a} dk \right)^{\frac{1}{a}}
+= C_{H,t} \left( \left( \Lambda^{H}_t \right)^{\varepsilon - 1} P_{H,t}^{1-\varepsilon} \right)^{\frac{1}{a}} \overset{!}{=} C_{H,t},
+\]
+което е изпълнено само при $\Lambda^{H}_t = P_{H,t}$. Следователно
+\begin{equation}
+C_{H,t}(j) = \left( \frac{P_{H,t}(j)}{P_{H,t}} \right)^{-\varepsilon} C_{H,t};
+\qquad
+C_{i,t}(j) = \left( \frac{P_{i,t}(j)}{P_{i,t}} \right)^{-\varepsilon} C_{i,t},
+\label{eq:demand_variety}
+\end{equation}
+а от \eqref{eq:level1_expenditure} следва връзката
+\begin{equation}
+\int_0^1 P_{H,t}(j) C_{H,t}(j)\, dj = P_{H,t} C_{H,t},
+\qquad
+\int_0^1 P_{i,t}(j) C_{i,t}(j)\, dj = P_{i,t} C_{i,t}.
+\label{eq:expenditure_variety}
+\end{equation}
+
+Съществено е, че множителят на Лагранж съвпада с ценовия индекс. Това е общо свойство на CES-агрегаторите и се повтаря на всяко от следващите нива.
+
+\subsubsection*{Ниво 2: между страните на произход на вноса}
+
+Прилагайки същата процедура към \eqref{eq:CF_index} с $b := \frac{\gamma-1}{\gamma}$ и множител $\Lambda^{F}_t$, получаваме необходимото условие
+\[
+P_{i,t} - \Lambda^{F}_t\, C_{F,t}^{\frac{1}{\gamma}} C_{i,t}^{-\frac{1}{\gamma}} = 0
+\quad \Longrightarrow \quad
+C_{i,t} = \left( \frac{P_{i,t}}{\Lambda^{F}_t} \right)^{-\gamma} C_{F,t},
+\]
+а определянето на множителя по същия начин дава $\Lambda^{F}_t = P_{F,t}$, където
+\begin{equation}
+P_{F,t} := \left( \int_0^1 P_{i,t}^{1-\gamma}\, di \right)^{\frac{1}{1-\gamma}}.
+\label{eq:PF_index}
+\end{equation}
+Следователно
+\begin{equation}
+C_{i,t} = \left( \frac{P_{i,t}}{P_{F,t}} \right)^{-\gamma} C_{F,t},
+\qquad
+\int_0^1 P_{i,t} C_{i,t}\, di = P_{F,t} C_{F,t}.
+\label{eq:demand_country}
+\end{equation}
+
+\subsubsection*{Ниво 3: между домашни и вносни стоки}
+
+На третото ниво агрегаторът \eqref{eq:C_index} съдържа тегла, поради което извеждането се различава по константите. Задачата е
+\[
+\min_{C_{H,t},\, C_{F,t}} P_{H,t} C_{H,t} + P_{F,t} C_{F,t}
+\quad \text{при} \quad
+\left[ (1-\alpha)^{\frac{1}{\eta}} C_{H,t}^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} C_{F,t}^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}} = C_t.
+\]
+Означавайки съдържанието на квадратните скоби с $\Xi_t$ и множителя на Лагранж с $\Lambda^{C}_t$, диференцирането по $C_{H,t}$ дава
+\begin{equation}
+P_{H,t} = \Lambda^{C}_t \cdot \frac{\eta}{\eta-1}\, \Xi_t^{\frac{\eta}{\eta-1}-1} \cdot (1-\alpha)^{\frac{1}{\eta}} \cdot \frac{\eta-1}{\eta}\, C_{H,t}^{-\frac{1}{\eta}}
+= \Lambda^{C}_t\, \Xi_t^{\frac{1}{\eta-1}} (1-\alpha)^{\frac{1}{\eta}} C_{H,t}^{-\frac{1}{\eta}}.
+\label{eq:level3_foc}
+\end{equation}
+Тъй като $\Xi_t^{\eta/(\eta-1)} = C_t$, е в сила $\Xi_t^{1/(\eta-1)} = C_t^{1/\eta}$, откъдето
+\begin{equation}
+C_{H,t} = (1-\alpha) \left( \frac{P_{H,t}}{\Lambda^{C}_t} \right)^{-\eta} C_t,
+\qquad
+C_{F,t} = \alpha \left( \frac{P_{F,t}}{\Lambda^{C}_t} \right)^{-\eta} C_t.
+\label{eq:level3_demand_lambda}
+\end{equation}
+
+За определяне на $\Lambda^{C}_t$ заместваме \eqref{eq:level3_demand_lambda} в агрегатора. Първият член дава
+\[
+(1-\alpha)^{\frac{1}{\eta}} \left[ (1-\alpha) \left( \tfrac{P_{H,t}}{\Lambda^{C}_t} \right)^{-\eta} C_t \right]^{\frac{\eta-1}{\eta}}
+= (1-\alpha) \left( \frac{P_{H,t}}{\Lambda^{C}_t} \right)^{1-\eta} C_t^{\frac{\eta-1}{\eta}},
+\]
+и аналогично за втория. Сумата е
+\[
+\Xi_t = C_t^{\frac{\eta-1}{\eta}} \left( \Lambda^{C}_t \right)^{\eta-1} \left[ (1-\alpha) P_{H,t}^{1-\eta} + \alpha P_{F,t}^{1-\eta} \right].
+\]
+Ограничението изисква $\Xi_t = C_t^{(\eta-1)/\eta}$, което дава $\left( \Lambda^{C}_t \right)^{\eta-1}\left[ (1-\alpha) P_{H,t}^{1-\eta} + \alpha P_{F,t}^{1-\eta} \right] = 1$. Дефинирайки индекса на потребителските цени (ИПЦ)
+\begin{equation}
+P_t := \left[ (1-\alpha) P_{H,t}^{1-\eta} + \alpha P_{F,t}^{1-\eta} \right]^{\frac{1}{1-\eta}},
+\label{eq:CPI}
+\end{equation}
+условието се записва като $\left( \Lambda^{C}_t \right)^{\eta-1} P_t^{1-\eta} = 1$, откъдето $\Lambda^{C}_t = P_t$. Следователно
+\begin{equation}
+C_{H,t} = (1-\alpha) \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} C_t;
+\qquad
+C_{F,t} = \alpha \left( \frac{P_{F,t}}{P_t} \right)^{-\eta} C_t.
+\label{eq:demand_HF}
+\end{equation}
+
+При $\eta = 1$ или при равни ценови индекси за домашни и чуждестранни стоки параметърът $\alpha$ съответства точно на дела на разходите за внос в общото потребление, което оправдава интерпретацията му като индекс на отвореност \parencite[с.~153]{Gali2008}.
+
+\subsubsection*{Свиване на бюджетното ограничение}
+
+Общите разходи за потребление се получават от \eqref{eq:demand_HF}:
+\begin{align}
+P_{H,t} C_{H,t} + P_{F,t} C_{F,t}
+&= (1-\alpha) P_{H,t}^{1-\eta} P_t^{\eta} C_t + \alpha P_{F,t}^{1-\eta} P_t^{\eta} C_t \notag \\
+&= P_t^{\eta} C_t \left[ (1-\alpha) P_{H,t}^{1-\eta} + \alpha P_{F,t}^{1-\eta} \right]
+= P_t^{\eta} C_t\, P_t^{1-\eta} = P_t C_t.
+\label{eq:total_expenditure}
+\end{align}
+
+Комбинирайки \eqref{eq:total_expenditure} с \eqref{eq:expenditure_variety} и \eqref{eq:demand_country}, лявата страна на \eqref{eq:budget_full} се свежда до $P_t C_t + \mathbb{E}_t\{Q_{t,t+1}D_{t+1}\}$, т.е. бюджетното ограничение приема познатия вид
+\begin{equation}
+P_t C_t + \mathbb{E}_t\{ Q_{t,t+1} D_{t+1} \} \le D_t + W_t N_t + T_t.
+\label{eq:budget_compact}
+\end{equation}
+Така след агрегиране на трите нива задачата на домакинството формално съвпада със задачата от затворената икономика, като единствената разлика е, че $P_t$ вече е ИПЦ, а не цената на единствената домашна стока.
+
+\subsection{Условия за оптималност}
+
+Периодната функция на полезност се специализира във вида
+\begin{equation}
+U(C_t, N_t) = \frac{C_t^{1-\sigma}}{1-\sigma} - \frac{N_t^{1+\varphi}}{1+\varphi},
+\qquad \sigma > 0,\ \varphi \ge 0,
+\label{eq:utility}
+\end{equation}
+за която $U_{c,t} = C_t^{-\sigma}$ и $U_{n,t} = -N_t^{\varphi}$.
+
+\subsubsection*{Вътрепериодно условие}
+
+Изравняването на пределната норма на заместване между потребление и труд с реалната работна заплата дава
+\begin{equation}
+-\frac{U_{n,t}}{U_{c,t}} = \frac{N_t^{\varphi}}{C_t^{-\sigma}} = C_t^{\sigma} N_t^{\varphi} = \frac{W_t}{P_t}.
+\label{eq:labor_supply}
+\end{equation}
+Логаритмуването на \eqref{eq:labor_supply} е точно (не се изисква приближение) и дава
+\begin{equation}
+w_t - p_t = \sigma c_t + \varphi n_t.
+\label{eq:labor_supply_log}
+\end{equation}
+
+\subsubsection*{Междувременно условие}
+
+За извеждане на междувременното условие се използва фактът, че при пълни пазари за всяко състояние на природата трябва да е в сила
+\begin{equation}
+\frac{V_{t,t+1}}{P_t} C_t^{-\sigma} = \xi_{t,t+1}\, \beta\, C_{t+1}^{-\sigma} \frac{1}{P_{t+1}},
+\label{eq:arrow}
+\end{equation}
+където $V_{t,t+1}$ е цената в период $t$ (в домашна валута) на ценна книга на Ароу (Arrow security), изплащаща единица домашна валута при реализиране на конкретно състояние в период $t+1$, а $\xi_{t,t+1}$ е вероятността за реализиране на това състояние. Лявата страна измерва загубата на полезност от намаленото текущо потребление, необходимо за закупуване на книгата, а дясната - очакваната печалба от допълнителното потребление, което изплащането прави възможно.
+
+Тъй като $Q_{t,t+1} := V_{t,t+1} / \xi_{t,t+1}$, разделянето на \eqref{eq:arrow} на $\xi_{t,t+1}$ и на $C_t^{-\sigma}/P_t$ дава
+\begin{equation}
+Q_{t,t+1} = \beta \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \left( \frac{P_t}{P_{t+1}} \right),
+\label{eq:sdf}
+\end{equation}
+което трябва да е изпълнено за всяко състояние в $t$ и $t+1$. Вземайки условно очакване от двете страни и полагайки $Q_t := \mathbb{E}_t\{Q_{t,t+1}\}$, получаваме уравнението на Ойлер
+\begin{equation}
+Q_t = \beta\, \mathbb{E}_t \left\{ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \left( \frac{P_t}{P_{t+1}} \right) \right\}.
+\label{eq:euler}
+\end{equation}
+
+\subsubsection*{Линеаризация на уравнението на Ойлер}
+
+Въвеждаме означенията $i_t := -\ln Q_t$, $\rho := -\ln \beta$ и $\pi_{t+1} := p_{t+1} - p_t$. Тогава
+\[
+Q_t = e^{-i_t}, \qquad \beta = e^{-\rho}, \qquad
+\left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} = e^{-\sigma \Delta c_{t+1}}, \qquad
+\frac{P_t}{P_{t+1}} = e^{-\pi_{t+1}},
+\]
+и \eqref{eq:euler} приема вида $e^{-i_t} = \mathbb{E}_t\{ e^{-\rho - \sigma\Delta c_{t+1} - \pi_{t+1}} \}$. Умножавайки двете страни по $e^{\,i_t}$, получаваме
+\begin{equation}
+1 = \mathbb{E}_t \left\{ e^{\, X_{t+1}} \right\},
+\qquad X_{t+1} := i_t - \sigma \Delta c_{t+1} - \pi_{t+1} - \rho.
+\label{eq:euler_exp}
+\end{equation}
+
+Разглеждаме равновесие, при което потреблението расте с постоянен темп $\Delta c_t = g$, а инфлацията е постоянна, $\pi_t = \pi$. Тогава $X = i - \sigma g - \pi - \rho$ и от \eqref{eq:euler_exp} следва $e^{EQ} := e^{X} = 1$, т.е. $X = 0$. Линеаризирайки $e^{X_{t+1}}$ около това равновесие, имаме
+\begin{equation}
+e^{X_{t+1}} \approx e^{EQ} + e^{EQ}(X_{t+1} - X) = 1 + X_{t+1}.
+\label{eq:euler_linearize}
+\end{equation}
+Заместването в \eqref{eq:euler_exp} дава $1 = \mathbb{E}_t\{1 + X_{t+1}\}$, т.е. $\mathbb{E}_t\{X_{t+1}\} = 0$:
+\[
+i_t - \sigma\, \mathbb{E}_t\{ \Delta c_{t+1} \} - \mathbb{E}_t\{\pi_{t+1}\} - \rho = 0.
+\]
+Решавайки спрямо $\mathbb{E}_t\{\Delta c_{t+1}\} = \mathbb{E}_t\{c_{t+1}\} - c_t$, получаваме лог-линеаризираното уравнение на Ойлер
+\begin{equation}
+c_t = \mathbb{E}_t\{ c_{t+1} \} - \frac{1}{\sigma} \left( i_t - \mathbb{E}_t\{ \pi_{t+1} \} - \rho \right).
+\label{eq:euler_log}
+\end{equation}
+
+Тук $i_t$ е краткосрочният номинален лихвен процент, $\rho$ е нормата на времево предпочитание, а $\pi_t$ е \emph{ИПЦ инфлацията} \parencite[с.~155]{Gali2008}. Уравнението \eqref{eq:euler_log} е записано спрямо ИПЦ инфлацията, а не спрямо домашната инфлация; преминаването между двете изисква въвеждането на условията на търговия.
+
+\section{Относителни цени и международни връзки}
+
+\subsection{Условия на търговия и ИПЦ инфлация}
+
+Двустранните условия на търговия (terms of trade) със страна $i$ се дефинират като $S_{i,t} := P_{i,t} / P_{H,t}$, т.е. цената на стоките на страна $i$, изразена в единици домашни стоки. Ефективните условия на търговия са
+\begin{equation}
+S_t := \frac{P_{F,t}}{P_{H,t}} = \left( \int_0^1 S_{i,t}^{1-\gamma}\, di \right)^{\frac{1}{1-\gamma}},
+\label{eq:tot_def}
+\end{equation}
+където второто равенство следва от \eqref{eq:PF_index} след разделяне на $P_{H,t}^{1-\gamma}$.
+
+\paragraph{Лог-линеаризация на \eqref{eq:tot_def}.}
+Логаритмувайки и записвайки $S_{i,t} = e^{s_{i,t}}$, имаме
+\[
+s_t = \frac{1}{1-\gamma} \ln \int_0^1 e^{(1-\gamma) s_{i,t}}\, di.
+\]
+Около симетрично стационарно състояние с $S_{i,t} = 1$ (т.е. $s_{i,t} = 0$) за всяко $i$ приближението от първи ред на подинтегралната функция е $e^{(1-\gamma)s_{i,t}} \approx 1 + (1-\gamma)s_{i,t}$, откъдето
+\[
+\int_0^1 e^{(1-\gamma) s_{i,t}}\, di \approx 1 + (1-\gamma) \int_0^1 s_{i,t}\, di.
+\]
+Използвайки $\ln(1+x) \approx x$, получаваме
+\begin{equation}
+s_t \approx \frac{1}{1-\gamma} \cdot (1-\gamma) \int_0^1 s_{i,t}\, di = \int_0^1 s_{i,t}\, di,
+\qquad s_t := \ln S_t = p_{F,t} - p_{H,t}.
+\label{eq:tot_loglin}
+\end{equation}
+Връзката е точна при $\gamma = 1$, тъй като тогава \eqref{eq:tot_def} се свежда до геометрична средна.
+
+\paragraph{Лог-линеаризация на ИПЦ.}
+Разделяйки \eqref{eq:CPI} на $P_{H,t}$, получаваме
+\begin{equation}
+\frac{P_t}{P_{H,t}} = \left[ (1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{1}{1-\eta}},
+\label{eq:cpi_ratio}
+\end{equation}
+т.е. $p_t - p_{H,t} = \frac{1}{1-\eta} \ln\!\left[ (1-\alpha) + \alpha e^{(1-\eta)s_t} \right] =: f(s_t)$. При $s_t = 0$ имаме $f(0) = \frac{1}{1-\eta}\ln 1 = 0$, а производната е
+\[
+f'(s_t) = \frac{1}{1-\eta} \cdot \frac{\alpha(1-\eta)e^{(1-\eta)s_t}}{(1-\alpha) + \alpha e^{(1-\eta)s_t}},
+\qquad
+f'(0) = \frac{\alpha}{(1-\alpha)+\alpha} = \alpha.
+\]
+Следователно приближението от първи ред е
+\begin{equation}
+p_t = (1-\alpha) p_{H,t} + \alpha p_{F,t} = p_{H,t} + \alpha s_t,
+\label{eq:cpi_loglin}
+\end{equation}
+което е точно при $\eta = 1$, тъй като тогава $P_t = P_{H,t}^{1-\alpha} P_{F,t}^{\alpha}$ \parencite[с.~155]{Gali2008}.
+
+Дефинирайки домашната инфлация като темпа на изменение на индекса на цените на домашно произведените стоки, $\pi_{H,t} := p_{H,t} - p_{H,t-1}$, и вземайки първа разлика на \eqref{eq:cpi_loglin}, получаваме
+\begin{equation}
+\pi_t = \pi_{H,t} + \alpha\, \Delta s_t.
+\label{eq:pi_cpi_domestic}
+\end{equation}
+Разликата между двете мерки за инфлация е пропорционална на изменението на условията на търговия, с коефициент на пропорционалност степента на отвореност $\alpha$. При $\alpha = 0$ двете мерки съвпадат.
+
+\subsection{Закон за единната цена и реален обменен курс}
+
+Приема се, че законът за единната цена (law of one price) е в сила за всяка отделна стока и във всеки момент:
+\begin{equation}
+P_{i,t}(j) = \mathcal{E}_{i,t}\, P^i_{i,t}(j), \qquad \forall\, i, j \in [0,1],
+\label{eq:lop}
+\end{equation}
+където $\mathcal{E}_{i,t}$ е двустранният номинален обменен курс (цената на валутата на страна $i$ в единици домашна валута), а $P^i_{i,t}(j)$ е цената на стоката, изразена във валутата на страна $i$.
+
+Заместването на \eqref{eq:lop} в дефиницията на $P_{i,t}$ от \eqref{eq:PH_index} дава
+\[
+P_{i,t} = \left( \int_0^1 \left[ \mathcal{E}_{i,t} P^i_{i,t}(j) \right]^{1-\varepsilon} dj \right)^{\frac{1}{1-\varepsilon}}
+= \mathcal{E}_{i,t} \left( \int_0^1 P^i_{i,t}(j)^{1-\varepsilon} dj \right)^{\frac{1}{1-\varepsilon}}
+= \mathcal{E}_{i,t} P^i_{i,t},
+\]
+тъй като $\mathcal{E}_{i,t}$ не зависи от $j$ и може да бъде изнесено пред интеграла. Лог-линеаризирайки дефиницията \eqref{eq:PF_index} по същия начин както \eqref{eq:tot_def}, получаваме
+\begin{equation}
+p_{F,t} = \int_0^1 \left( e_{i,t} + p^i_{i,t} \right) di = e_t + p^*_t,
+\label{eq:pF_loglin}
+\end{equation}
+където $e_t := \int_0^1 e_{i,t}\, di$ е (логаритъмът на) ефективният номинален обменен курс, а $p^*_t := \int_0^1 p^i_{i,t}\, di$ е световният ценови индекс. За света като цяло няма разлика между ИПЦ и индекса на домашните цени.
+
+Комбинирайки \eqref{eq:pF_loglin} с $s_t = p_{F,t} - p_{H,t}$, получаваме
+\begin{equation}
+s_t = e_t + p^*_t - p_{H,t}.
+\label{eq:tot_exchange}
+\end{equation}
+
+Двустранният реален обменен курс се дефинира като $\mathcal{Q}_{i,t} := \mathcal{E}_{i,t} P^i_t / P_t$, т.е. отношението на ИПЦ на двете страни, изразени в домашна валута. За ефективния реален обменен курс $q_t := \int_0^1 q_{i,t}\, di$ последователно имаме
+\begin{align}
+q_t &= \int_0^1 \left( e_{i,t} + p^i_t - p_t \right) di
+= e_t + p^*_t - p_t \notag \\
+&= \underbrace{(s_t + p_{H,t})}_{\text{от }\eqref{eq:tot_exchange}} - p_t
+= s_t - \underbrace{(p_t - p_{H,t})}_{= \alpha s_t \ \text{от}\ \eqref{eq:cpi_loglin}}
+= (1-\alpha) s_t,
+\label{eq:rer}
+\end{align}
+където последното равенство е точно при $\eta = 1$, а в общия случай - с точност до първи ред \parencite[с.~156]{Gali2008}.
+
+\subsection{Международно споделяне на риска}
+
+При пълни международни финансови пазари условие, аналогично на \eqref{eq:arrow}, е в сила и за представителното домакинство във всяка друга страна $i$. Записано чрез стохастичния дисконтов фактор на разглежданата икономика, то има вида
+\begin{equation}
+\beta \left( \frac{C^i_{t+1}}{C^i_t} \right)^{-\sigma}
+\left( \frac{P^i_t}{P^i_{t+1}} \right)
+\left( \frac{\mathcal{E}_{i,t}}{\mathcal{E}_{i,t+1}} \right) = Q_{t,t+1}.
+\label{eq:arrow_foreign}
+\end{equation}
+Наличието на членовете с обменния курс отразява факта, че ценната книга се купува на цена и с изплащане, деноминирани във валутата на разглежданата икономика, и следователно трябва да бъде преизчислена във валутата на страна $i$.
+
+\paragraph{Извеждане на условието за споделяне на риска.}
+Приравнявайки десните страни на \eqref{eq:sdf} и \eqref{eq:arrow_foreign} и съкращавайки $\beta$, получаваме
+\[
+\left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}}
+= \left( \frac{C^i_{t+1}}{C^i_t} \right)^{-\sigma} \frac{P^i_t}{P^i_{t+1}} \cdot \frac{\mathcal{E}_{i,t}}{\mathcal{E}_{i,t+1}}.
+\]
+Прегрупирайки така, че величините за домашната икономика да бъдат отляво, имаме
+\begin{equation}
+\left( \frac{C_{t+1}/C^i_{t+1}}{C_t/C^i_t} \right)^{-\sigma}
+= \frac{P_{t+1}}{P_t} \cdot \frac{P^i_t}{P^i_{t+1}} \cdot \frac{\mathcal{E}_{i,t}}{\mathcal{E}_{i,t+1}}.
+\label{eq:rs_step1}
+\end{equation}
+От дефиницията $\mathcal{Q}_{i,t} = \mathcal{E}_{i,t}P^i_t/P_t$ следва
+\[
+\frac{\mathcal{Q}_{i,t+1}}{\mathcal{Q}_{i,t}}
+= \frac{\mathcal{E}_{i,t+1}}{\mathcal{E}_{i,t}} \cdot \frac{P^i_{t+1}}{P^i_t} \cdot \frac{P_t}{P_{t+1}},
+\]
+т.е. дясната страна на \eqref{eq:rs_step1} е точно $\mathcal{Q}_{i,t}/\mathcal{Q}_{i,t+1}$. Следователно
+\begin{equation}
+\left( \frac{C_{t+1}}{C^i_{t+1}} \right)^{-\sigma} \mathcal{Q}_{i,t+1}
+= \left( \frac{C_t}{C^i_t} \right)^{-\sigma} \mathcal{Q}_{i,t},
+\label{eq:rs_step2}
+\end{equation}
+т.е. величината $(C_t/C^i_t)^{-\sigma}\mathcal{Q}_{i,t}$ е постоянна във времето. Оттук
+\begin{equation}
+C_t = \vartheta_i\, C^i_t\, \mathcal{Q}_{i,t}^{\frac{1}{\sigma}},
+\label{eq:risk_sharing_level}
+\end{equation}
+където $\vartheta_i$ е константа, зависеща от началните относителни нетни активни позиции. Приемайки симетрични начални условия (нулеви нетни чуждестранни активи), имаме $\vartheta_i = 1$ за всяко $i$.
+
+Логаритмувайки \eqref{eq:risk_sharing_level} при $\vartheta_i = 1$, получаваме $c_t = c^i_t + \frac{1}{\sigma} q_{i,t}$. Интегрирайки по $i$ и използвайки, че лявата страна не зависи от $i$:
+\begin{equation}
+c_t = \int_0^1 c^i_t\, di + \frac{1}{\sigma} \int_0^1 q_{i,t}\, di
+= c^*_t + \frac{1}{\sigma} q_t
+= c^*_t + \left( \frac{1-\alpha}{\sigma} \right) s_t,
+\label{eq:risk_sharing}
+\end{equation}
+където $c^*_t := \int_0^1 c^i_t\, di$ е индексът на световното потребление, а последното равенство използва \eqref{eq:rer} \parencite[с.~157]{Gali2008}. Условието \eqref{eq:risk_sharing} заменя необходимостта от проследяване на динамиката на нетните чуждестранни активи с статична връзка между домашното потребление, световното потребление и относителните цени.
+
+\subsection{Непокрит лихвен паритет}
+
+При пълни международни финансови пазари равновесната цена (в домашна валута) на безрискова облигация, деноминирана във валутата на страна $i$, е
+\[
+\mathcal{E}_{i,t} Q^i_t = \mathbb{E}_t\{ Q_{t,t+1} \mathcal{E}_{i,t+1} \}
+\quad \Longleftrightarrow \quad
+Q^i_t = \mathbb{E}_t\left\{ Q_{t,t+1} \frac{\mathcal{E}_{i,t+1}}{\mathcal{E}_{i,t}} \right\}.
+\]
+Записвайки $Q^i_t = e^{-i^i_t}$ и умножавайки по $e^{\,i^i_t}$, получаваме $\mathbb{E}_t\{Q_{t,t+1} e^{\,i^i_t}(\mathcal{E}_{i,t+1}/\mathcal{E}_{i,t})\} = 1$. Аналогично от домашното условие $Q_t = \mathbb{E}_t\{Q_{t,t+1}\}$ следва $\mathbb{E}_t\{Q_{t,t+1}e^{\,i_t}\} = 1$. Изваждайки двете, получаваме
+\begin{equation}
+\mathbb{E}_t \left\{ Q_{t,t+1} \left[ e^{\,i_t} - e^{\,i^i_t} \frac{\mathcal{E}_{i,t+1}}{\mathcal{E}_{i,t}} \right] \right\} = 0.
+\label{eq:uip_exact}
+\end{equation}
+Лог-линеаризирането на \eqref{eq:uip_exact} около стационарно състояние при пълно предвиждане (в което $i_t = i^i_t$ и $\mathcal{E}_{i,t+1}/\mathcal{E}_{i,t} = 1$) и агрегирането по $i$ дават условието за непокрит лихвен паритет (uncovered interest parity)
+\begin{equation}
+i_t = i^*_t + \mathbb{E}_t\{ \Delta e_{t+1} \}.
+\label{eq:uip}
+\end{equation}
+
+\paragraph{Условия на търговия и лихвени диференциали.}
+Вземайки първа разлика на \eqref{eq:tot_exchange} и очаквания към момент $t$:
+\[
+\mathbb{E}_t\{ s_{t+1} \} - s_t
+= \mathbb{E}_t\{ \Delta e_{t+1} \} + \mathbb{E}_t\{ \pi^*_{t+1} \} - \mathbb{E}_t\{ \pi_{H,t+1} \}.
+\]
+Заместването на $\mathbb{E}_t\{\Delta e_{t+1}\} = i_t - i^*_t$ от \eqref{eq:uip} и прегрупирането дават
+\begin{equation}
+s_t = \left( i^*_t - \mathbb{E}_t\{\pi^*_{t+1}\} \right) - \left( i_t - \mathbb{E}_t\{\pi_{H,t+1}\} \right) + \mathbb{E}_t\{ s_{t+1} \}.
+\label{eq:tot_difference}
+\end{equation}
+Тъй като условията на търговия са еднозначно определени в стационарното състояние при пълно предвиждане, е в сила $\lim_{T \to \infty} \mathbb{E}_t\{ s_T \} = 0$ и \eqref{eq:tot_difference} може да бъде решено напред чрез рекурсивно заместване:
+\begin{equation}
+s_t = \mathbb{E}_t \left\{ \sum_{k=0}^{\infty} \left[ (i^*_{t+k} - \pi^*_{t+k+1}) - (i_{t+k} - \pi_{H,t+k+1}) \right] \right\}.
+\label{eq:tot_forward}
+\end{equation}
+Уравненията \eqref{eq:tot_difference} и \eqref{eq:tot_forward} не представляват допълнително независимо равновесно условие: те се получават чрез комбиниране на уравненията на Ойлер за домашната и световната икономика с условието за споделяне на риска \eqref{eq:risk_sharing} и с връзката \eqref{eq:pi_cpi_domestic} \parencite[с.~158]{Gali2008}.
+
+\section{Фирми}
+
+В домашната икономика има континуум от фирми, индексирани с $j \in [0,1]$, функциониращи в условия на монополистична конкуренция. Всяка фирма произвежда точно една разновидност в количество $Y_t(j)$, при търсене, зададено с \eqref{eq:demand_variety}, и приема агрегатните величини за дадени.
+
+\subsection{Технология и пределни разходи}
+
+Типична фирма произвежда диференцирана стока с линейна технология
+\begin{equation}
+Y_t(j) = A_t N_t(j),
+\label{eq:production}
+\end{equation}
+където $a_t := \ln A_t$ следва процес от вида AR(1):
+\begin{equation}
+a_t = \rho_a a_{t-1} + \varepsilon^a_t, \qquad \rho_a \in [0,1),
+\label{eq:tech_process}
+\end{equation}
+а $\varepsilon^a_t$ е бял шум със средна нула.
+
+Общите номинални разходи на фирмата са $TC^n_t(j) = (1-\tau) W_t N_t(j) = (1-\tau) W_t Y_t(j)/A_t$, където $\tau$ е субсидия за заетост, въведена с цел при подходящ избор на стойността ѝ разпределението при гъвкави цени да бъде ефективно. Номиналните пределни разходи са
+\[
+\psi_t = \frac{\partial TC^n_t(j)}{\partial Y_t(j)} = \frac{(1-\tau) W_t}{A_t},
+\]
+т.е. те не зависят от произвежданото количество и следователно са \emph{еднакви за всички домашни фирми}. Това е съществено опростяване спрямо базисния модел с намаляваща възвращаемост от мащаба. Реалните пределни разходи, изразени спрямо цените на домашните стоки, са $MC_t = \psi_t / P_{H,t}$, откъдето след логаритмуване
+\begin{equation}
+mc_t = -\nu + w_t - p_{H,t} - a_t,
+\qquad \nu := -\ln(1-\tau).
+\label{eq:mc_def}
+\end{equation}
+
+\subsection{Ценообразуване по схемата на Калво}
+
+Приема се, че във всеки период дадена фирма с вероятност $1-\theta$ получава възможност да преоптимизира цената си, а с вероятност $\theta$ запазва цената от предходния период (схема на Калво, \cite{Calvo1983}). Вероятността за преоптимизиране не зависи от изминалото време от последната промяна. При допускането за симетрия всички фирми, които преоптимизират, решават една и съща задача и избират една и съща цена, означавана с $\bar{P}_{H,t}$.\footnote{В затворената икономика тази цена се означава с $P^*_t$. Тук звездичката е запазена за променливи, отнасящи се до световната икономика, поради което се използва $\bar{P}_{H,t}$.}
+
+\subsubsection*{Необходимо условие за оптималност}
+
+Фирмата, преоптимизираща в период $t$, решава задачата за максимизиране на условната печалба
+\begin{equation}
+\max_{\bar{P}_{H,t}} \ \mathbb{E}_t \sum_{k=0}^{\infty} \theta^k
+\left\{ Q_{t,t+k} \left( \bar{P}_{H,t} Y_{t+k|t} - \Psi_{t+k}(Y_{t+k|t}) \right) \right\}
+\label{eq:calvo_problem}
+\end{equation}
+при ограниченията
+\begin{equation}
+Y_{t+k|t} = \left( \frac{\bar{P}_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} Y_{t+k},
+\qquad k = 0, 1, 2, \dots,
+\label{eq:calvo_constraint}
+\end{equation}
+където $Y_{t+k}$ е агрегатното търсене на домашна продукция, а $\Psi_{t+k}(\cdot)$ е функцията на общите разходи.
+
+Заместването на \eqref{eq:calvo_constraint} в \eqref{eq:calvo_problem} дава
+\[
+\mathbb{E}_t \sum_{k=0}^{\infty} \theta^k \left\{ Q_{t,t+k}
+\left[ \bar{P}_{H,t} \left( \frac{\bar{P}_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} Y_{t+k}
+- \Psi_{t+k}\!\left( \left( \frac{\bar{P}_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} Y_{t+k} \right) \right] \right\}.
+\]
+За получаване на необходимо условие за оптималност диференцираме по $\bar{P}_{H,t}$ и приравняваме на нула. Диференцирането на израза в квадратните скоби, при означение $\psi_{t+k|t} := \Psi'_{t+k}(Y_{t+k|t})$ за номиналните пределни разходи в период $t+k$ при цена, определена в период $t$, дава три члена:
+\begin{equation}
+\underbrace{\left( \frac{\bar{P}_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} Y_{t+k}}_{= \, Y_{t+k|t}}
++ \bar{P}_{H,t}(-\varepsilon) \bar{P}_{H,t}^{-\varepsilon-1} P_{H,t+k}^{\varepsilon} Y_{t+k}
+- \psi_{t+k|t}(-\varepsilon) \bar{P}_{H,t}^{-\varepsilon-1} P_{H,t+k}^{\varepsilon} Y_{t+k}.
+\label{eq:calvo_deriv}
+\end{equation}
+Тъй като $\bar{P}_{H,t}^{-\varepsilon-1} P_{H,t+k}^{\varepsilon} Y_{t+k} = Y_{t+k|t} / \bar{P}_{H,t}$, изразът \eqref{eq:calvo_deriv} се свежда до
+\begin{equation}
+Y_{t+k|t} - \varepsilon Y_{t+k|t} + \frac{\varepsilon}{\bar{P}_{H,t}} \psi_{t+k|t} Y_{t+k|t}
+= Y_{t+k|t} \left( 1 - \varepsilon + \frac{\varepsilon}{\bar{P}_{H,t}} \psi_{t+k|t} \right).
+\label{eq:calvo_collect}
+\end{equation}
+Изнасяйки $\frac{1-\varepsilon}{\bar{P}_{H,t}}$ пред скобата:
+\begin{equation}
+Y_{t+k|t} \left( 1 - \varepsilon + \frac{\varepsilon}{\bar{P}_{H,t}} \psi_{t+k|t} \right)
+= \frac{(1-\varepsilon) Y_{t+k|t}}{\bar{P}_{H,t}}
+\left( \bar{P}_{H,t} - \underbrace{\frac{\varepsilon}{\varepsilon-1}}_{=: \, \mathcal{M}} \psi_{t+k|t} \right).
+\label{eq:calvo_factored}
+\end{equation}
+
+Приравнявайки очакваната дисконтирана сума на нула, използвайки линейното свойство на очакването и съкращавайки общия множител $\frac{1-\varepsilon}{\bar{P}_{H,t}} \ne 0$, получаваме необходимото условие за оптималност
+\begin{equation}
+\sum_{k=0}^{\infty} \theta^k\, \mathbb{E}_t \left\{ Q_{t,t+k} Y_{t+k|t}
+\left[ \bar{P}_{H,t} - \mathcal{M} \psi_{t+k|t} \right] \right\} = 0.
+\label{eq:foc_pricing}
+\end{equation}
+При гъвкави цени ($\theta = 0$) остава само членът с $k = 0$ и \eqref{eq:foc_pricing} се свежда до $\bar{P}_{H,t} = \mathcal{M}\psi_{t|t}$, което се интерпретира като формиране на цената чрез прилагане на надбавка $\mathcal{M}$ върху пределните разходи.
+
+\subsubsection*{Лог-линеаризация на \eqref{eq:foc_pricing}}
+
+Дефинираме ценовия индекс между периоди $t$ и $t+k$ като $\Pi_{H,t,t+k} := P_{H,t+k}/P_{H,t}$ и реалните пределни разходи в период $t+k$ при цена, определена в период $t$, като $MC_{t+k|t} := \psi_{t+k|t}/P_{H,t+k}$. Разделяйки \eqref{eq:foc_pricing} на $P_{H,t-1}$ и използвайки
+\[
+\frac{\psi_{t+k|t}}{P_{H,t-1}} = \frac{\psi_{t+k|t}}{P_{H,t+k}} \cdot \frac{P_{H,t+k}}{P_{H,t-1}} = MC_{t+k|t}\, \Pi_{H,t-1,t+k},
+\]
+получаваме
+\begin{equation}
+\sum_{k=0}^{\infty} \theta^k\, \mathbb{E}_t \left\{ Q_{t,t+k} Y_{t+k|t}
+\left[ \frac{\bar{P}_{H,t}}{P_{H,t-1}} - \mathcal{M}\, MC_{t+k|t}\, \Pi_{H,t-1,t+k} \right] \right\} = 0.
+\label{eq:foc_normalized}
+\end{equation}
+
+\paragraph{Стационарно състояние.}
+В стационарно състояние с нулева инфлация имаме $\bar{P}_{H,t} = P_{H,t+k}$, следователно $\bar{P}_{H,t}/P_{H,t-1} = 1$ и $\Pi_{H,t-1,t+k} = 1$, откъдето $Y_{t+k|t} = Y$ и $MC_{t+k|t} = MC$. Освен това $Q_{t,t+k} = \beta^k$. Тогава \eqref{eq:foc_normalized} става
+\[
+Y \left[ 1 - \mathcal{M}\, MC \right] \sum_{k=0}^{\infty} (\beta\theta)^k = 0
+\quad \Longrightarrow \quad
+MC = \frac{1}{\mathcal{M}}
+\quad \Longleftrightarrow \quad
+mc = -\mu, \ \ \mu := \ln \mathcal{M}.
+\]
+
+\paragraph{Линеаризация.}
+Записваме $Q_{t,t+k} = \beta^k \tilde{Q}_{t,t+k}$, където $\tilde{Q}_{t,t+k} := (C_{t+k}/C_t)^{-\sigma}(P_t/P_{t+k})$, и представяме всеки множител в експоненциален вид. Тогава \eqref{eq:foc_normalized} се разделя на две суми:
+\begin{equation}
+\sum_{k=0}^{\infty} (\beta\theta)^k \mathbb{E}_t \left\{ e^{\tilde{q}_{t,t+k}} e^{y_{t+k|t}} e^{\bar{p}_{H,t} - p_{H,t-1}} \right\}
+= \sum_{k=0}^{\infty} (\beta\theta)^k \mathbb{E}_t \left\{ e^{\tilde{q}_{t,t+k}} e^{y_{t+k|t}} e^{\mu} e^{mc_{t+k|t}} e^{p_{H,t+k} - p_{H,t-1}} \right\}.
+\label{eq:foc_exp}
+\end{equation}
+Означаваме стационарната стойност на израза под сумата отляво с $e^{EQ_1}$, а тази отдясно с $e^{EQ_2}$. От условието $MC = 1/\mathcal{M}$ следва $e^{EQ_1} = e^{EQ_2}$. Линеаризирайки двете страни около избраното стационарно състояние, получаваме
+\begin{align}
+&\sum_{k} (\beta\theta)^k \mathbb{E}_t \Big\{ e^{EQ_1} \big[ 1 + (\tilde{q}_{t,t+k} - \tilde{q}) + (y_{t+k|t} - y)
++ (\bar{p}_{H,t} - \bar{p}_H) - (p_{H,t-1} - p_H) \big] \Big\} \notag \\
+= \ &\sum_{k} (\beta\theta)^k \mathbb{E}_t \Big\{ e^{EQ_2} \big[ 1 + (\tilde{q}_{t,t+k} - \tilde{q}) + (y_{t+k|t} - y)
++ \underbrace{(mc_{t+k|t} - mc)}_{=: \, \widehat{mc}_{t+k|t}} + (p_{H,t+k} - p_H) - (p_{H,t-1} - p_H) \big] \Big\}.
+\label{eq:foc_linearized}
+\end{align}
+След съкращаване на $e^{EQ_1} = e^{EQ_2}$, на единиците, на членовете с $\tilde{q}_{t,t+k}$, на тези с $y_{t+k|t}$ и на тези с $p_{H,t-1}$ остава
+\[
+\sum_{k=0}^{\infty} (\beta\theta)^k \left( \bar{p}_{H,t} - p_{H,t-1} \right)
+= \sum_{k=0}^{\infty} (\beta\theta)^k \mathbb{E}_t \left\{ \widehat{mc}_{t+k|t} + (p_{H,t+k} - p_{H,t-1}) \right\}.
+\]
+Лявата страна не зависи от $k$, поради което сумата е $(\bar{p}_{H,t} - p_{H,t-1})/(1-\beta\theta)$. Умножавайки по $(1-\beta\theta)$ и използвайки, че при линейна технология $\widehat{mc}_{t+k|t} = \widehat{mc}_{t+k}$ (пределните разходи не зависят от индивидуалната цена, съответно от индивидуалния обем на производството), получаваме
+\begin{equation}
+\bar{p}_{H,t} - p_{H,t-1} = (1-\beta\theta) \sum_{k=0}^{\infty} (\beta\theta)^k
+\mathbb{E}_t \left\{ \widehat{mc}_{t+k} + (p_{H,t+k} - p_{H,t-1}) \right\}.
+\label{eq:optimal_price_raw}
+\end{equation}
+Използвайки $\widehat{mc}_{t+k} = mc_{t+k} + \mu$ и $(1-\beta\theta)\sum_k(\beta\theta)^k = 1$, изразът \eqref{eq:optimal_price_raw} може да бъде записан и във вида
+\begin{equation}
+\bar{p}_{H,t} = \mu + (1-\beta\theta) \sum_{k=0}^{\infty} (\beta\theta)^k\, \mathbb{E}_t \left\{ mc_{t+k} + p_{H,t+k} \right\},
+\label{eq:optimal_price_log}
+\end{equation}
+който се интерпретира като формиране на цената чрез надбавка над претеглените очаквани номинални пределни разходи \parencite[с.~159]{Gali2008}.
+
+\subsubsection*{Рекурсивна форма}
+
+За да се получи рекурсивен запис на \eqref{eq:optimal_price_raw}, разделяме дясната страна на две суми. Втората от тях се преобразува чрез $p_{H,t+k} - p_{H,t-1} = \sum_{m=0}^{k} \pi_{H,t+m}$ и смяна на реда на сумиране:
+\[
+(1-\beta\theta)\sum_{k=0}^{\infty}(\beta\theta)^k \sum_{m=0}^{k} \pi_{H,t+m}
+= (1-\beta\theta)\sum_{m=0}^{\infty} \pi_{H,t+m} \sum_{k=m}^{\infty}(\beta\theta)^k
+= \sum_{m=0}^{\infty}(\beta\theta)^m \pi_{H,t+m}.
+\]
+Следователно
+\begin{equation}
+\bar{p}_{H,t} - p_{H,t-1}
+= \underbrace{(1-\beta\theta)\sum_{k}(\beta\theta)^k \mathbb{E}_t\{\widehat{mc}_{t+k}\}}_{=: \, \mathcal{A}_t}
++ \underbrace{\sum_{k}(\beta\theta)^k \mathbb{E}_t\{\pi_{H,t+k}\}}_{=: \, \mathcal{B}_t}.
+\label{eq:price_two_sums}
+\end{equation}
+И двете суми имат рекурсивно представяне: $\mathcal{A}_t = (1-\beta\theta)\widehat{mc}_t + \beta\theta\,\mathbb{E}_t\{\mathcal{A}_{t+1}\}$ и $\mathcal{B}_t = \pi_{H,t} + \beta\theta\,\mathbb{E}_t\{\mathcal{B}_{t+1}\}$. Събирайки ги, получаваме
+\begin{equation}
+\bar{p}_{H,t} - p_{H,t-1} = \beta\theta\, \mathbb{E}_t\{ \bar{p}_{H,t+1} - p_{H,t} \}
++ (1-\beta\theta)\, \widehat{mc}_t + \pi_{H,t}.
+\label{eq:price_recursive}
+\end{equation}
+
+\subsubsection*{Извеждане на общата динамика на цените}
+
+Нека $\mathcal{J}(t) \subset [0,1]$ е множеството на фирмите, които не са получили възможност да актуализират цената си в период $t$. При симетрия всяка такава фирма има цена $P_{H,t-1}$, а останалите избират $\bar{P}_{H,t}$. Тогава общият ценови индекс има вида
+\begin{equation}
+P_{H,t} = \left[ \int_{\mathcal{J}(t)} P_{H,t-1}^{1-\varepsilon} dj + \int_{[0,1] \setminus \mathcal{J}(t)} \bar{P}_{H,t}^{1-\varepsilon} dj \right]^{\frac{1}{1-\varepsilon}}
+= \left[ \theta P_{H,t-1}^{1-\varepsilon} + (1-\theta) \bar{P}_{H,t}^{1-\varepsilon} \right]^{\frac{1}{1-\varepsilon}},
+\label{eq:price_index_dynamics}
+\end{equation}
+където второто равенство следва от (вариант на) закона за големите числа. При стандартната дефиниция $\Pi_{H,t} := P_{H,t}/P_{H,t-1}$, повдигайки \eqref{eq:price_index_dynamics} на степен $1-\varepsilon$ и разделяйки на $P_{H,t-1}^{1-\varepsilon}$, получаваме
+\begin{equation}
+\Pi_{H,t}^{1-\varepsilon} = \theta + (1-\theta) \left( \frac{\bar{P}_{H,t}}{P_{H,t-1}} \right)^{1-\varepsilon}.
+\label{eq:pi_index}
+\end{equation}
+Лог-линеаризирайки \eqref{eq:pi_index} около стационарно състояние с нулева инфлация, т.е. $\Pi_{H,t} = \Pi_H = 1$ и $\bar{P}_{H,t} = \bar{P}_H = P_{H,t} = P_H$, лявата страна дава $(1-\varepsilon)\pi_{H,t}$, а дясната - $(1-\theta)(1-\varepsilon)(\bar{p}_{H,t} - p_{H,t-1})$. Съкращавайки $(1-\varepsilon)$:
+\begin{equation}
+\pi_{H,t} = (1-\theta)\left( \bar{p}_{H,t} - p_{H,t-1} \right).
+\label{eq:pi_pstar}
+\end{equation}
+
+\subsubsection*{Уравнение за инфлацията}
+
+Заместваме $\bar{p}_{H,t} - p_{H,t-1} = \frac{\pi_{H,t}}{1-\theta}$ от \eqref{eq:pi_pstar} в \eqref{eq:price_recursive}:
+\[
+\frac{\pi_{H,t}}{1-\theta} = \frac{\beta\theta}{1-\theta}\, \mathbb{E}_t\{\pi_{H,t+1}\} + (1-\beta\theta)\widehat{mc}_t + \pi_{H,t}.
+\]
+Прехвърляйки $\pi_{H,t}$ отляво и събирайки:
+\[
+\pi_{H,t}\left( \frac{1}{1-\theta} - 1 \right) = \pi_{H,t} \cdot \frac{\theta}{1-\theta}
+= \frac{\beta\theta}{1-\theta}\, \mathbb{E}_t\{\pi_{H,t+1}\} + (1-\beta\theta)\widehat{mc}_t.
+\]
+Умножавайки по $\frac{1-\theta}{\theta}$, стигаме до уравнението за домашната инфлация
+\begin{equation}
+\pi_{H,t} = \beta\, \mathbb{E}_t\{ \pi_{H,t+1} \} + \lambda\, \widehat{mc}_t,
+\qquad \lambda := \frac{(1-\beta\theta)(1-\theta)}{\theta}.
+\label{eq:inflation_mc}
+\end{equation}
+Коефициентът $\lambda$ не зависи от нито един от параметрите, характеризиращи отворената икономика \parencite[с.~163]{Gali2008}. Той е и по-прост от съответния коефициент в базисния модел на затворената икономика, където при намаляваща възвращаемост в него влиза допълнителен множител, отчитащ зависимостта на пределните разходи от индивидуалния обем на производството. Тук този множител отпада, тъй като технологията \eqref{eq:production} е линейна.
+
+\section{Равновесие}
+
+\subsection{Пазар на стоки}
+
+\subsubsection*{Търсене на домашна разновидност}
+
+Условието за изравняване на търсенето и предлагането изисква производството на всяка домашна разновидност да покрива домашното търсене и търсенето от всички останали страни:
+\begin{equation}
+Y_t(j) = C_{H,t}(j) + \int_0^1 C^i_{H,t}(j)\, di.
+\label{eq:market_clearing_j}
+\end{equation}
+Домашният компонент се получава от \eqref{eq:demand_variety} и \eqref{eq:demand_HF}:
+\[
+C_{H,t}(j) = \left( \frac{P_{H,t}(j)}{P_{H,t}} \right)^{-\varepsilon} (1-\alpha) \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} C_t.
+\]
+При допускане за симетрични предпочитания в чужбина търсенето на страна $i$ за домашната разновидност $j$ преминава през същите три нива, но с ценови индекси, изразени във валутата на страна $i$:
+\[
+C^i_{H,t}(j) = \alpha \left( \frac{P_{H,t}(j)}{P_{H,t}} \right)^{-\varepsilon}
+\left( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \right)^{-\gamma}
+\left( \frac{P^i_{F,t}}{P^i_t} \right)^{-\eta} C^i_t.
+\]
+Заместването в \eqref{eq:market_clearing_j} дава
+\begin{equation}
+Y_t(j) = \left( \frac{P_{H,t}(j)}{P_{H,t}} \right)^{-\varepsilon}
+\left[ (1-\alpha) \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} C_t
++ \alpha \int_0^1 \left( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \right)^{-\gamma}
+\left( \frac{P^i_{F,t}}{P^i_t} \right)^{-\eta} C^i_t\, di \right].
+\label{eq:market_clearing}
+\end{equation}
+
+\subsubsection*{Агрегиране}
+
+Агрегатното домашно производство се дефинира като
+$Y_t := \left( \int_0^1 Y_t(j)^{1 - \frac{1}{\varepsilon}} dj \right)^{\frac{\varepsilon}{\varepsilon-1}}$.
+Означавайки израза в квадратните скоби на \eqref{eq:market_clearing} с $\mathcal{D}_t$ (той не зависи от $j$), имаме
+\[
+\int_0^1 Y_t(j)^{\frac{\varepsilon-1}{\varepsilon}} dj
+= \mathcal{D}_t^{\frac{\varepsilon-1}{\varepsilon}} P_{H,t}^{\varepsilon-1} \int_0^1 P_{H,t}(j)^{1-\varepsilon} dj
+= \mathcal{D}_t^{\frac{\varepsilon-1}{\varepsilon}} P_{H,t}^{\varepsilon-1} P_{H,t}^{1-\varepsilon}
+= \mathcal{D}_t^{\frac{\varepsilon-1}{\varepsilon}},
+\]
+където е използвана \eqref{eq:PH_index}. Повдигайки на степен $\frac{\varepsilon}{\varepsilon-1}$, получаваме $Y_t = \mathcal{D}_t$, т.е. агрегатното производство е точно изразът в квадратните скоби.
+
+\subsubsection*{Преобразуване чрез относителни цени}
+
+Изнасяме $(P_{H,t}/P_t)^{-\eta}$ пред скобата. За втория член вътре в скобата остава множителят
+\[
+\left( \frac{\mathcal{E}_{i,t} P^i_{F,t}}{P_{H,t}} \right)^{\gamma}
+\left[ \frac{P^i_t}{P^i_{F,t}} \cdot \frac{P_{H,t}}{P_t} \right]^{\eta}
+= \left( \frac{\mathcal{E}_{i,t} P^i_{F,t}}{P_{H,t}} \right)^{\gamma - \eta} \mathcal{Q}_{i,t}^{\eta},
+\]
+където второто равенство използва $\mathcal{Q}_{i,t} = \mathcal{E}_{i,t}P^i_t / P_t$. Освен това, от $P_{i,t} = \mathcal{E}_{i,t}P^i_{i,t}$, от $S_{i,t} = P_{i,t}/P_{H,t}$ и от дефиницията на ефективните условия на търговия за страна $i$, $S^i_t = P^i_{F,t}/P^i_{i,t}$, следва тъждеството
+\begin{equation}
+S^i_t\, S_{i,t}
+= \frac{P^i_{F,t}}{P^i_{i,t}} \cdot \frac{\mathcal{E}_{i,t} P^i_{i,t}}{P_{H,t}}
+= \frac{\mathcal{E}_{i,t} P^i_{F,t}}{P_{H,t}}.
+\label{eq:tot_identity}
+\end{equation}
+Накрая, от условието за споделяне на риска \eqref{eq:risk_sharing_level} при $\vartheta_i = 1$ имаме $C^i_t = C_t\, \mathcal{Q}_{i,t}^{-1/\sigma}$, поради което $\mathcal{Q}_{i,t}^{\eta} C^i_t = C_t\, \mathcal{Q}_{i,t}^{\eta - 1/\sigma}$. Събирайки трите преобразувания:
+\begin{equation}
+Y_t = \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} C_t
+\left[ (1-\alpha) + \alpha \int_0^1 \left( S^i_t S_{i,t} \right)^{\gamma-\eta} \mathcal{Q}_{i,t}^{\eta - \frac{1}{\sigma}}\, di \right].
+\label{eq:Y_exact}
+\end{equation}
+
+\subsubsection*{Лог-линеаризация на \eqref{eq:Y_exact}}
+
+Логаритмувайки \eqref{eq:Y_exact}:
+\[
+y_t = -\eta\left( p_{H,t} - p_t \right) + c_t
++ \ln\!\left[ (1-\alpha) + \alpha \int_0^1 e^{(\gamma-\eta)(s^i_t + s_{i,t}) + (\eta - \frac{1}{\sigma}) q_{i,t}}\, di \right].
+\]
+
+\emph{Първи член.} От \eqref{eq:cpi_loglin} следва $p_{H,t} - p_t = -\alpha s_t$, поради което $-\eta(p_{H,t}-p_t) = \alpha\eta s_t$.
+
+\emph{Трети член.} В симетричното стационарно състояние всички относителни цени са равни на единица, така че подинтегралната функция е $1$ и целият израз в скобите е $(1-\alpha) + \alpha = 1$. Приближението от първи ред на подинтегралната функция е
+$1 + (\gamma-\eta)(s^i_t + s_{i,t}) + \left( \eta - \tfrac{1}{\sigma} \right) q_{i,t}$,
+откъдето изразът в скобите става
+\[
+1 + \alpha \int_0^1 \left[ (\gamma - \eta)(s^i_t + s_{i,t}) + \left( \eta - \tfrac{1}{\sigma} \right) q_{i,t} \right] di.
+\]
+Използвайки $\int_0^1 s^i_t\, di = 0$ (сумата на условията на търговия по всички страни е нула), $\int_0^1 s_{i,t}\, di = s_t$ от \eqref{eq:tot_loglin} и $\int_0^1 q_{i,t}\, di = q_t$, а също и $\ln(1+x) \approx x$, третият член се свежда до
+$\alpha(\gamma-\eta)s_t + \alpha\left( \eta - \tfrac{1}{\sigma} \right) q_t$.
+
+\emph{Събиране.} Сумирайки трите приноса, членовете с $s_t$ се обединяват:
+\begin{equation}
+y_t = c_t + \underbrace{\alpha\eta s_t + \alpha(\gamma-\eta)s_t}_{= \, \alpha\gamma s_t}
++ \alpha\left( \eta - \frac{1}{\sigma} \right) q_t.
+\label{eq:y_c_q}
+\end{equation}
+Заместването на $q_t = (1-\alpha)s_t$ от \eqref{eq:rer} и изнасянето на $\alpha/\sigma$ дават
+\begin{equation}
+y_t = c_t + \frac{\alpha}{\sigma}\Big[ \sigma\gamma + (1-\alpha)(\sigma\eta - 1) \Big] s_t
+= c_t + \frac{\alpha\omega}{\sigma} s_t,
+\qquad \omega := \sigma\gamma + (1-\alpha)(\sigma\eta - 1).
+\label{eq:y_c_tot}
+\end{equation}
+
+\subsubsection*{Изчистване на световния пазар}
+
+Аналогично условие е в сила за всяка страна: $y^i_t = c^i_t + \frac{\alpha\omega}{\sigma} s^i_t$. Интегрирайки по $i$ и използвайки отново $\int_0^1 s^i_t\, di = 0$, получаваме
+\begin{equation}
+y^*_t := \int_0^1 y^i_t\, di = \int_0^1 c^i_t\, di =: c^*_t.
+\label{eq:world_clearing}
+\end{equation}
+
+Заместването на $c_t = c^*_t + \frac{1-\alpha}{\sigma}s_t$ от \eqref{eq:risk_sharing} в \eqref{eq:y_c_tot} и използването на \eqref{eq:world_clearing} дават
+\[
+y_t = y^*_t + \frac{1-\alpha}{\sigma}s_t + \frac{\alpha\omega}{\sigma}s_t
+= y^*_t + \frac{(1-\alpha) + \alpha\omega}{\sigma}s_t
+= y^*_t + \frac{1 + \alpha(\omega-1)}{\sigma}s_t,
+\]
+т.е.
+\begin{equation}
+y_t = y^*_t + \frac{1}{\sigma_\alpha} s_t,
+\qquad \sigma_\alpha := \frac{\sigma}{1 + \alpha(\omega - 1)} > 0.
+\label{eq:y_ystar_tot}
+\end{equation}
+Обръщайки \eqref{eq:y_ystar_tot}, получаваме връзката, която ще се използва многократно по-нататък:
+\begin{equation}
+s_t = \sigma_\alpha \left( y_t - y^*_t \right).
+\label{eq:tot_output}
+\end{equation}
+
+\subsubsection*{Динамично уравнение за производството}
+
+От \eqref{eq:y_c_tot} имаме $c_t = y_t - \frac{\alpha\omega}{\sigma}s_t$. Заместването в уравнението на Ойлер \eqref{eq:euler_log} дава
+\begin{equation}
+y_t - \frac{\alpha\omega}{\sigma}s_t
+= \mathbb{E}_t\{y_{t+1}\} - \frac{\alpha\omega}{\sigma}\mathbb{E}_t\{s_{t+1}\}
+- \frac{1}{\sigma}\left( i_t - \mathbb{E}_t\{\pi_{t+1}\} - \rho \right),
+\label{eq:dis_step1}
+\end{equation}
+т.е.
+\begin{equation}
+y_t = \mathbb{E}_t\{ y_{t+1} \} - \frac{1}{\sigma} \left( i_t - \mathbb{E}_t\{\pi_{t+1}\} - \rho \right)
+- \frac{\alpha\omega}{\sigma} \mathbb{E}_t\{ \Delta s_{t+1} \}.
+\label{eq:dis_line1}
+\end{equation}
+
+\paragraph{Преминаване към домашна инфлация.}
+От \eqref{eq:pi_cpi_domestic} следва $\mathbb{E}_t\{\pi_{t+1}\} = \mathbb{E}_t\{\pi_{H,t+1}\} + \alpha\,\mathbb{E}_t\{\Delta s_{t+1}\}$, поради което
+\[
+-\frac{1}{\sigma}\left( i_t - \mathbb{E}_t\{\pi_{t+1}\} - \rho \right)
+= -\frac{1}{\sigma}\left( i_t - \mathbb{E}_t\{\pi_{H,t+1}\} - \rho \right)
++ \frac{\alpha}{\sigma}\mathbb{E}_t\{\Delta s_{t+1}\}.
+\]
+Заместването в \eqref{eq:dis_line1} и обединяването на членовете с $\mathbb{E}_t\{\Delta s_{t+1}\}$ дават
+\begin{equation}
+y_t = \mathbb{E}_t\{ y_{t+1} \} - \frac{1}{\sigma} \left( i_t - \mathbb{E}_t\{\pi_{H,t+1}\} - \rho \right)
+- \frac{\alpha\Theta}{\sigma} \mathbb{E}_t\{ \Delta s_{t+1} \},
+\label{eq:dis_line2}
+\end{equation}
+където\footnote{Означението $\Theta$ тук съответства на $\omega-1$ по \textcite[с.~161]{Gali2008} и не бива да се смесва с едноименния множител $\frac{1-\alpha}{1-\alpha+\alpha\varepsilon}$ от базисния модел на затворената икономика, където $\alpha$ обозначава степента на намаляваща възвращаемост. Тук последният отпада, тъй като технологията е линейна.}
+\begin{equation}
+\Theta := \omega - 1 = (\sigma\gamma - 1) + (1-\alpha)(\sigma\eta - 1).
+\label{eq:Theta_def}
+\end{equation}
+
+\paragraph{Елиминиране на условията на търговия.}
+От \eqref{eq:tot_output} следва $\mathbb{E}_t\{\Delta s_{t+1}\} = \sigma_\alpha\left( \mathbb{E}_t\{\Delta y_{t+1}\} - \mathbb{E}_t\{\Delta y^*_{t+1}\} \right)$. Означавайки $\chi := \frac{\alpha\Theta\sigma_\alpha}{\sigma}$ и замествайки в \eqref{eq:dis_line2}:
+\[
+y_t = \mathbb{E}_t\{y_{t+1}\} - \chi\left( \mathbb{E}_t\{y_{t+1}\} - y_t \right) + \chi\,\mathbb{E}_t\{\Delta y^*_{t+1}\}
+- \frac{1}{\sigma}\left( i_t - \mathbb{E}_t\{\pi_{H,t+1}\} - \rho \right).
+\]
+Прехвърляйки членовете с $y_t$ отляво:
+\[
+(1-\chi)\, y_t = (1-\chi)\, \mathbb{E}_t\{y_{t+1}\} + \chi\,\mathbb{E}_t\{\Delta y^*_{t+1}\}
+- \frac{1}{\sigma}\left( i_t - \mathbb{E}_t\{\pi_{H,t+1}\} - \rho \right).
+\]
+От дефиницията $\sigma_\alpha = \sigma/(1+\alpha\Theta)$ следва $\chi = \frac{\alpha\Theta}{1+\alpha\Theta}$ и
+\[
+1 - \chi = \frac{1}{1+\alpha\Theta} = \frac{\sigma_\alpha}{\sigma}.
+\]
+Разделяйки на $1-\chi = \sigma_\alpha/\sigma$ и използвайки $\frac{\sigma}{\sigma_\alpha}\chi = \frac{\sigma}{\sigma_\alpha}\cdot\frac{\alpha\Theta\sigma_\alpha}{\sigma} = \alpha\Theta$, получаваме окончателно
+\begin{equation}
+y_t = \mathbb{E}_t\{ y_{t+1} \} - \frac{1}{\sigma_\alpha} \left( i_t - \mathbb{E}_t\{\pi_{H,t+1}\} - \rho \right)
++ \alpha\Theta\, \mathbb{E}_t\{ \Delta y^*_{t+1} \}.
+\label{eq:dis_levels}
+\end{equation}
+Степента на отвореност влияе върху чувствителността на производството към промени в домашния реален лихвен процент чрез $\sigma_\alpha$ \parencite[с.~161]{Gali2008}.
+
+\subsection{Търговски баланс}
+
+Нека $nx_t := \frac{1}{Y}\left( Y_t - \frac{P_t}{P_{H,t}} C_t \right)$ означава нетния износ в единици домашно производство, изразен като дял от стационарното производство $Y$. В симетричното стационарно състояние $Y = C$ и $P = P_H$, така че $nx = 0$. Приближението от първи ред е
+\[
+nx_t \approx \frac{1}{Y}\Big[ Y(1 + y_t) - C\big( 1 + (p_t - p_{H,t}) + c_t \big) \Big]
+= y_t - c_t - \alpha s_t,
+\]
+където е използвано $Y = C$ и $p_t - p_{H,t} = \alpha s_t$. Заместването на $y_t - c_t = \frac{\alpha\omega}{\sigma}s_t$ от \eqref{eq:y_c_tot} дава
+\begin{equation}
+nx_t = \left( \frac{\alpha\omega}{\sigma} - \alpha \right) s_t
+= \alpha \left( \frac{\omega}{\sigma} - 1 \right) s_t.
+\label{eq:net_exports}
+\end{equation}
+Търговският баланс е балансиран във всеки момент, ако $\omega = \sigma$, т.е. ако $\sigma(\gamma-1) + (1-\alpha)(\sigma\eta-1) = 0$ \parencite[с.~162]{Gali2008}.
+
+\subsection{Пазар на труд}
+
+Изравняването на търсенето и предлагането на труд изисква $N_t := \int_0^1 N_t(j)\, dj$. Заместването на $N_t(j) = Y_t(j)/A_t$ от \eqref{eq:production} и на търсенето $Y_t(j) = (P_{H,t}(j)/P_{H,t})^{-\varepsilon}Y_t$ дава
+\[
+N_t = \frac{1}{A_t}\int_0^1 Y_t(j)\, dj
+= \frac{Y_t}{A_t} \underbrace{\int_0^1 \left( \frac{P_{H,t}(j)}{P_{H,t}} \right)^{-\varepsilon} dj}_{=: \, d_t}.
+\]
+Величината $d_t$ може да се интерпретира като измерител на „разсейването“ (разпръснатостта) на цените между различните фирми. За нея може да се докаже, че в околност на стационарно състояние с нулева инфлация вариациите ѝ са от втори ред и следователно могат да бъдат изпуснати при приближение от първи ред. Логаритмувайки и полагайки $\ln d_t \approx 0$, получаваме линейното приближение за връзката между съвкупно производство, технологии и заетост
+\begin{equation}
+y_t = a_t + n_t.
+\label{eq:agg_production}
+\end{equation}
+
+\subsection{Пределни разходи}
+
+Изразът за реалните пределни разходи \eqref{eq:mc_def} се разгръща последователно:
+\begin{align}
+mc_t &= -\nu + (w_t - p_{H,t}) - a_t \notag \\
+&= -\nu + \underbrace{(w_t - p_t)}_{\eqref{eq:labor_supply_log}} + \underbrace{(p_t - p_{H,t})}_{\eqref{eq:cpi_loglin}} - a_t \notag \\
+&= -\nu + \sigma c_t + \varphi n_t + \alpha s_t - a_t.
+\label{eq:mc_step}
+\end{align}
+От условието за споделяне на риска \eqref{eq:risk_sharing} и от \eqref{eq:world_clearing} следва
+\[
+\sigma c_t = \sigma c^*_t + (1-\alpha)s_t = \sigma y^*_t + (1-\alpha)s_t,
+\]
+а от агрегатната производствена функция \eqref{eq:agg_production} следва $n_t = y_t - a_t$. Заместването на двете в \eqref{eq:mc_step} дава
+\begin{align}
+mc_t &= -\nu + \sigma y^*_t + (1-\alpha)s_t + \varphi(y_t - a_t) + \alpha s_t - a_t \notag \\
+&= -\nu + \sigma y^*_t + \varphi y_t + \underbrace{\big[(1-\alpha) + \alpha\big]}_{= \, 1} s_t - (1+\varphi) a_t \notag \\
+&= -\nu + \sigma y^*_t + \varphi y_t + s_t - (1+\varphi) a_t.
+\label{eq:mc_tot}
+\end{align}
+Заместването на $s_t = \sigma_\alpha(y_t - y^*_t)$ от \eqref{eq:tot_output} дава израз само чрез домашното производство, световното производство и технологията:
+\begin{align}
+mc_t &= -\nu + \sigma y^*_t + \varphi y_t + \sigma_\alpha y_t - \sigma_\alpha y^*_t - (1+\varphi)a_t \notag \\
+&= -\nu + (\sigma_\alpha + \varphi) y_t + (\sigma - \sigma_\alpha) y^*_t - (1+\varphi) a_t.
+\label{eq:mc_final}
+\end{align}
+
+От дефиницията $\sigma_\alpha = \sigma/(1+\alpha\Theta)$ следва $\sigma = \sigma_\alpha(1+\alpha\Theta)$, откъдето се получава тъждеството
+\begin{equation}
+\sigma - \sigma_\alpha = \alpha\Theta\,\sigma_\alpha,
+\label{eq:sigma_identity}
+\end{equation}
+което ще бъде използвано няколкократно по-нататък. В частност, при $\alpha = 0$ и/или при $\Theta = 0$ е в сила $\sigma = \sigma_\alpha$ и домашните реални пределни разходи стават нечувствителни към движенията на чуждестранното производство \parencite[с.~164]{Gali2008}.
+
+\subsection{Естествено ниво на производство}
+
+Естественото ниво на производство $y^n_t$ се дефинира като нивото на производство в условия на гъвкави цени. Тогава реалните пределни разходи са постоянни и равни на $-\mu$, така че от \eqref{eq:mc_final}:
+\[
+-\mu = -\nu + (\sigma_\alpha + \varphi) y^n_t + (\sigma - \sigma_\alpha) y^*_t - (1+\varphi) a_t.
+\]
+Решавайки спрямо $y^n_t$:
+\[
+(\sigma_\alpha + \varphi) y^n_t = (\nu - \mu) + (1+\varphi)a_t - (\sigma - \sigma_\alpha) y^*_t,
+\]
+и разделяйки на $\sigma_\alpha + \varphi$, получаваме
+\begin{equation}
+y^n_t = \Gamma_0 + \Gamma_a a_t + \Gamma_* y^*_t,
+\label{eq:natural_output}
+\end{equation}
+където, използвайки тъждеството \eqref{eq:sigma_identity} за третия коефициент,
+\begin{equation}
+\Gamma_0 := \frac{\nu - \mu}{\sigma_\alpha + \varphi},
+\qquad
+\Gamma_a := \frac{1+\varphi}{\sigma_\alpha + \varphi} > 0,
+\qquad
+\Gamma_* := -\frac{\sigma - \sigma_\alpha}{\sigma_\alpha + \varphi} = -\frac{\alpha\Theta\sigma_\alpha}{\sigma_\alpha + \varphi}.
+\label{eq:Gamma_coefs}
+\end{equation}
+
+\section{Канонично представяне на равновесната динамика}
+
+\subsection{Неокейнсианска крива на Филипс}
+
+Нека $\tilde{y}_t := y_t - y^n_t$ означава отклонението от потенциалното производство (output gap). Изваждайки уравнението, дефиниращо $y^n_t$, от \eqref{eq:mc_final}, членовете с $y^*_t$ и $a_t$ се съкращават:
+\[
+mc_t - (-\mu) = (\sigma_\alpha + \varphi)(y_t - y^n_t),
+\]
+т.е.
+\begin{equation}
+\widehat{mc}_t = (\sigma_\alpha + \varphi)\, \tilde{y}_t.
+\label{eq:mc_gap}
+\end{equation}
+Тук се използва, че $y^*_t$ е инвариантно спрямо събитията в домашната икономика.
+
+Заместването на \eqref{eq:mc_gap} в \eqref{eq:inflation_mc} дава неокейнсианската крива на Филипс (New Keynesian Phillips Curve) за отворената икономика
+\begin{equation}
+\boxed{\ \pi_{H,t} = \beta\, \mathbb{E}_t\{ \pi_{H,t+1} \} + \kappa_\alpha \tilde{y}_t\ },
+\qquad \kappa_\alpha := \lambda (\sigma_\alpha + \varphi).
+\label{eq:nkpc}
+\end{equation}
+Формата на \eqref{eq:nkpc} съвпада с тази за затворената икономика; степента на отвореност влияе върху динамиката на домашната инфлация единствено чрез наклона $\kappa_\alpha$ \parencite[с.~164]{Gali2008}.
+
+\subsection{Динамично IS уравнение}
+
+Изваждаме $y^n_t$ от двете страни на \eqref{eq:dis_levels} и добавяме и изваждаме $\mathbb{E}_t\{y^n_{t+1}\}$ отдясно:
+\begin{align}
+\underbrace{y_t - y^n_t}_{\tilde{y}_t}
+&= \underbrace{\mathbb{E}_t\{y_{t+1}\} - \mathbb{E}_t\{y^n_{t+1}\}}_{\mathbb{E}_t\{\tilde{y}_{t+1}\}}
++ \underbrace{\mathbb{E}_t\{y^n_{t+1}\} - y^n_t}_{\mathbb{E}_t\{\Delta y^n_{t+1}\}} \notag \\
+&\quad - \frac{1}{\sigma_\alpha}\left( i_t - \mathbb{E}_t\{\pi_{H,t+1}\} - \rho \right)
++ \alpha\Theta\, \mathbb{E}_t\{ \Delta y^*_{t+1} \}.
+\label{eq:dis_gap_raw}
+\end{align}
+Изнасяйки $-\frac{1}{\sigma_\alpha}$ пред всички членове, които не зависят от $\tilde{y}$, получаваме
+\[
+\tilde{y}_t = \mathbb{E}_t\{\tilde{y}_{t+1}\}
+- \frac{1}{\sigma_\alpha}\Big[ i_t - \mathbb{E}_t\{\pi_{H,t+1}\}
+- \underbrace{\big( \rho + \sigma_\alpha \mathbb{E}_t\{\Delta y^n_{t+1}\} + \sigma_\alpha\alpha\Theta\,\mathbb{E}_t\{\Delta y^*_{t+1}\} \big)}_{=: \ r^n_t} \Big],
+\]
+т.е. т.нар. динамично IS уравнение (динамична IS крива, dynamic IS equation)
+\begin{equation}
+\boxed{\ \tilde{y}_t = \mathbb{E}_t\{ \tilde{y}_{t+1} \} - \frac{1}{\sigma_\alpha} \left( i_t - \mathbb{E}_t\{ \pi_{H,t+1} \} - r^n_t \right)\ }
+\label{eq:dis}
+\end{equation}
+където $r^n_t$ е естественото ниво на лихвения процент:
+\begin{equation}
+r^n_t := \rho + \sigma_\alpha \mathbb{E}_t\{\Delta y^n_{t+1}\} + \sigma_\alpha \alpha\Theta\, \mathbb{E}_t\{\Delta y^*_{t+1}\}.
+\label{eq:rn_raw}
+\end{equation}
+
+\paragraph{Явен вид на естественото ниво на лихвения процент.}
+Вземайки първа разлика на \eqref{eq:natural_output}, имаме
+$\mathbb{E}_t\{\Delta y^n_{t+1}\} = \Gamma_a \mathbb{E}_t\{\Delta a_{t+1}\} + \Gamma_* \mathbb{E}_t\{\Delta y^*_{t+1}\}$.
+От процеса \eqref{eq:tech_process} следва $\mathbb{E}_t\{a_{t+1}\} = \rho_a a_t$, откъдето
+$\mathbb{E}_t\{\Delta a_{t+1}\} = (\rho_a - 1)a_t = -(1-\rho_a)a_t$.
+Заместването в \eqref{eq:rn_raw} дава
+\[
+r^n_t = \rho - \sigma_\alpha \Gamma_a (1-\rho_a) a_t
++ \big( \sigma_\alpha \Gamma_* + \sigma_\alpha \alpha\Theta \big) \mathbb{E}_t\{\Delta y^*_{t+1}\}.
+\]
+Коефициентът пред $\mathbb{E}_t\{\Delta y^*_{t+1}\}$ се опростява чрез \eqref{eq:Gamma_coefs}:
+\[
+\sigma_\alpha \Gamma_* + \sigma_\alpha \alpha\Theta
+= \sigma_\alpha \alpha\Theta \left( 1 - \frac{\sigma_\alpha}{\sigma_\alpha + \varphi} \right)
+= \sigma_\alpha \alpha\Theta \cdot \frac{\varphi}{\sigma_\alpha + \varphi}.
+\]
+Следователно
+\begin{equation}
+r^n_t = \rho - \sigma_\alpha \Gamma_a (1-\rho_a)\, a_t
++ \frac{\alpha\Theta\sigma_\alpha\varphi}{\sigma_\alpha + \varphi}\, \mathbb{E}_t\{\Delta y^*_{t+1}\}.
+\label{eq:rn}
+\end{equation}
+За разлика от затворената икономика тук $r^n_t \ne \rho + \sigma_\alpha\mathbb{E}_t\{\Delta y^n_{t+1}\}$: появява се допълнителен член, произхождащ от третия ред на \eqref{eq:dis_levels}, и именно комбинирането на двата приноса поражда коефициента $\frac{\alpha\Theta\sigma_\alpha\varphi}{\sigma_\alpha+\varphi}$.
+
+Двете уравнения \eqref{eq:nkpc} и \eqref{eq:dis} формират неполитическия блок на модела. Той е формално идентичен с този за затворената икономика; отвореността се проявява само чрез коефициентите $\kappa_\alpha$ и $\sigma_\alpha$ и чрез структурата на $r^n_t$ \parencite[с.~165]{Gali2008}.
+
+\section{Въвеждане на парична политика}
+
+За да бъде решен моделът, е необходимо да се въведе правило за определяне на номиналния лихвен процент. Разглежда се правило на Тейлър от вида
+\begin{equation}
+i_t = \rho + \phi_\pi \pi_{H,t} + \phi_y \tilde{y}_t + v_t,
+\qquad \phi_\pi, \phi_y \ge 0,
+\label{eq:taylor}
+\end{equation}
+където $v_t$ е екзогенен компонент, следващ процес от вида AR(1):
+\begin{equation}
+v_t = \rho_v v_{t-1} + \varepsilon^v_t, \qquad \rho_v \in [0,1),
+\label{eq:v_process}
+\end{equation}
+а $\varepsilon^v_t$ е бял шум със средна нула.
+
+\subsection{Матрична форма на системата}
+
+Заместваме \eqref{eq:taylor} в \eqref{eq:dis} и означаваме $\hat{r}^n_t := r^n_t - \rho$:
+\[
+\tilde{y}_t = \mathbb{E}_t\{\tilde{y}_{t+1}\}
+- \frac{1}{\sigma_\alpha}\left( \phi_\pi \pi_{H,t} + \phi_y \tilde{y}_t + v_t - \mathbb{E}_t\{\pi_{H,t+1}\} - \hat{r}^n_t \right).
+\]
+Умножавайки по $\sigma_\alpha$ и прехвърляйки члена с $\phi_y \tilde{y}_t$ отляво:
+\begin{equation}
+(\sigma_\alpha + \phi_y)\tilde{y}_t = \sigma_\alpha \mathbb{E}_t\{\tilde{y}_{t+1}\}
++ \mathbb{E}_t\{\pi_{H,t+1}\} - \phi_\pi \pi_{H,t} + u_t,
+\qquad u_t := \hat{r}^n_t - v_t.
+\label{eq:system_step1}
+\end{equation}
+Заместваме $\pi_{H,t}$ от \eqref{eq:nkpc}:
+\[
+(\sigma_\alpha + \phi_y)\tilde{y}_t = \sigma_\alpha \mathbb{E}_t\{\tilde{y}_{t+1}\}
++ \mathbb{E}_t\{\pi_{H,t+1}\} - \phi_\pi \big( \beta\mathbb{E}_t\{\pi_{H,t+1}\} + \kappa_\alpha \tilde{y}_t \big) + u_t,
+\]
+откъдето след събиране на членовете с $\tilde{y}_t$
+\begin{equation}
+(\sigma_\alpha + \phi_y + \kappa_\alpha \phi_\pi)\tilde{y}_t
+= \sigma_\alpha \mathbb{E}_t\{\tilde{y}_{t+1}\} + (1 - \beta\phi_\pi)\mathbb{E}_t\{\pi_{H,t+1}\} + u_t.
+\label{eq:system_row1_raw}
+\end{equation}
+Полагайки
+\begin{equation}
+\Omega_\alpha := \frac{1}{\sigma_\alpha + \phi_y + \kappa_\alpha \phi_\pi},
+\label{eq:Omega_def}
+\end{equation}
+първият ред на системата е
+\begin{equation}
+\tilde{y}_t = \Omega_\alpha \Big[ \sigma_\alpha \mathbb{E}_t\{\tilde{y}_{t+1}\} + (1-\beta\phi_\pi)\mathbb{E}_t\{\pi_{H,t+1}\} + u_t \Big].
+\label{eq:system_row1}
+\end{equation}
+
+Заместването на \eqref{eq:system_row1} обратно в \eqref{eq:nkpc} дава
+\[
+\pi_{H,t} = \beta\mathbb{E}_t\{\pi_{H,t+1}\}
++ \kappa_\alpha \Omega_\alpha \Big[ \sigma_\alpha \mathbb{E}_t\{\tilde{y}_{t+1}\} + (1-\beta\phi_\pi)\mathbb{E}_t\{\pi_{H,t+1}\} + u_t \Big].
+\]
+Коефициентът пред $\mathbb{E}_t\{\pi_{H,t+1}\}$ се опростява, като се използва \eqref{eq:Omega_def}:
+\begin{align}
+\beta + \kappa_\alpha \Omega_\alpha (1-\beta\phi_\pi)
+&= \beta\big( 1 - \kappa_\alpha \Omega_\alpha \phi_\pi \big) + \kappa_\alpha \Omega_\alpha \notag \\
+&= \beta \Omega_\alpha \big( \sigma_\alpha + \phi_y + \kappa_\alpha\phi_\pi - \kappa_\alpha \phi_\pi \big) + \kappa_\alpha \Omega_\alpha \notag \\
+&= \Omega_\alpha \Big[ \kappa_\alpha + \beta(\sigma_\alpha + \phi_y) \Big].
+\label{eq:coef_simplify}
+\end{align}
+
+Обединявайки \eqref{eq:system_row1} и резултата за $\pi_{H,t}$, получаваме системата
+\begin{equation}
+\begin{bmatrix} \tilde{y}_t \\ \pi_{H,t} \end{bmatrix}
+= A_\alpha
+\begin{bmatrix} \mathbb{E}_t\{\tilde{y}_{t+1}\} \\ \mathbb{E}_t\{\pi_{H,t+1}\} \end{bmatrix}
++ B_\alpha \left( \hat{r}^n_t - v_t \right),
+\label{eq:system}
+\end{equation}
+където
+\begin{equation}
+A_\alpha := \Omega_\alpha
+\begin{bmatrix}
+\sigma_\alpha & 1 - \beta\phi_\pi \\
+\sigma_\alpha \kappa_\alpha & \kappa_\alpha + \beta(\sigma_\alpha + \phi_y)
+\end{bmatrix},
+\qquad
+B_\alpha := \Omega_\alpha \begin{bmatrix} 1 \\ \kappa_\alpha \end{bmatrix}.
+\label{eq:system_matrices}
+\end{equation}
+
+\subsection{Алтернативни правила}
+
+В \textcite[с.~173]{Gali2008} се разглеждат три опростени правила за паричната политика, които ще бъдат използвани и в настоящото изследване:
+
+\begin{itemize}
+\item \emph{Правило на Тейлър спрямо домашната инфлация} (domestic inflation-based Taylor rule, DITR):
+$i_t = \rho + \phi_\pi \pi_{H,t}$.
+\item \emph{Правило на Тейлър спрямо ИПЦ инфлацията} (CPI inflation-based Taylor rule, CITR):
+$i_t = \rho + \phi_\pi \pi_t$.
+\item \emph{Фиксиран обменен курс} (exchange rate peg, PEG): $e_t = 0$ за всяко $t$.
+\end{itemize}
+
+Правилото DITR се получава от \eqref{eq:taylor} при $\phi_y = 0$ и $v_t \equiv 0$, поради което системата \eqref{eq:system} остава директно приложима с $\Omega_\alpha = 1/(\sigma_\alpha + \kappa_\alpha\phi_\pi)$. Правилата CITR и PEG изискват допълнителни уравнения, свързващи $\pi_t$ и $e_t$ с ендогенните променливи, чрез \eqref{eq:pi_cpi_domestic} и \eqref{eq:tot_exchange}.
+
+\section{Екзогенни процеси}
+
+Световното производство е екзогенно спрямо малката отворена икономика. Приема се, че то следва процес от вида AR(1)
+\begin{equation}
+y^*_t = \rho_{y^*} y^*_{t-1} + \varepsilon^{*}_t, \qquad \rho_{y^*} \in [0,1),
+\label{eq:world_process}
+\end{equation}
+където $\varepsilon^{*}_t$ е бял шум със средна нула. Заедно с \eqref{eq:tech_process} и \eqref{eq:v_process} това напълно определя движещите сили на модела. Конкретните стойности на параметрите на трите процеса се въвеждат в глава~\ref{ch:experiment}.
+
+\section{Обобщение}
+
+Изведеният модел се свежда до следната система, която ще бъде използвана в останалата част от изложението:
+\begin{align}
+\pi_{H,t} &= \beta\, \mathbb{E}_t\{ \pi_{H,t+1} \} + \kappa_\alpha \tilde{y}_t, \tag{НККФ} \\
+\tilde{y}_t &= \mathbb{E}_t\{ \tilde{y}_{t+1} \} - \frac{1}{\sigma_\alpha} \left( i_t - \mathbb{E}_t\{ \pi_{H,t+1} \} - r^n_t \right), \tag{ДИС} \\
+i_t &= \rho + \phi_\pi \pi_{H,t} + \phi_y \tilde{y}_t + v_t, \tag{ПТ}
+\end{align}
+допълнена с процесите \eqref{eq:tech_process}, \eqref{eq:v_process} и \eqref{eq:world_process} за движещите сили и с идентичностите \eqref{eq:pi_cpi_domestic}, \eqref{eq:tot_exchange}, \eqref{eq:tot_output} и \eqref{eq:rer}, чрез които се възстановяват ИПЦ инфлацията, обменният курс, условията на търговия и реалният обменен курс.
